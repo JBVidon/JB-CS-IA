@@ -2,7 +2,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
-public class Main {
+public class Main { //His JB I just wrote this
     //instance field
     private List<String> names = new ArrayList<String>();
     private ArrayList<String> possibleTimes = new ArrayList<String>();
