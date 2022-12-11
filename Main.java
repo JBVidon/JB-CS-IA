@@ -1,7 +1,7 @@
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
-
+//hi jose
 public class Main { //His JB I just wrote this
     //instance field
     private List<String> names = new ArrayList<String>();
