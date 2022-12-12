@@ -9,7 +9,18 @@ public class Main {
 
     //constructor
     Main() {
-        possibleTimes.add("1:00");
+        possibleTimes.add("8am");
+        possibleTimes.add("9am");
+        possibleTimes.add("10am");
+        possibleTimes.add("11am");
+        possibleTimes.add("12am");
+        possibleTimes.add("1pm");
+        possibleTimes.add("2pm");
+        possibleTimes.add("3pm");
+        possibleTimes.add("4pm");
+        possibleTimes.add("5pm");
+        possibleTimes.add("6pm");
+
     }
     public static void main(String[] args) throws Exception {
         Main main = new Main();
@@ -41,6 +52,10 @@ public class Main {
     //add people to the list
     void addPeople(String person) {
         names.add(person);
+    }
+    //add times to the list
+    void addTime(String time) {
+        possibleTimes.add(time);
     }
     //get possible times
     ArrayList<String> getPossibleTimes() {

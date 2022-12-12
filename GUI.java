@@ -69,6 +69,7 @@ public class GUI extends Main {
 
         frameTimes.setVisible(true);
     }
+
     public String[] copyArrayList(ArrayList<String> arrayList) {
         String[] copyArray = new String[arrayList.size()];
         for (int i = 0; i < copyArray.length; i++) {
