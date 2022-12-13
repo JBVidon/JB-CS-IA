@@ -6,21 +6,10 @@ public class Main {
     //instance field
     private List<String> names = new ArrayList<String>();
     private ArrayList<String> possibleTimes = new ArrayList<String>();
+    private ArrayList<Date> possibleDays = new ArrayList<Date>();
 
     //constructor
     Main() {
-        possibleTimes.add("8am");
-        possibleTimes.add("9am");
-        possibleTimes.add("10am");
-        possibleTimes.add("11am");
-        possibleTimes.add("12am");
-        possibleTimes.add("1pm");
-        possibleTimes.add("2pm");
-        possibleTimes.add("3pm");
-        possibleTimes.add("4pm");
-        possibleTimes.add("5pm");
-        possibleTimes.add("6pm");
-
     }
     public static void main(String[] args) throws Exception {
         Main main = new Main();
@@ -57,8 +46,34 @@ public class Main {
     void addTime(String time) {
         possibleTimes.add(time);
     }
+    //add date to the list
+    void addDate(Date date) {
+        possibleDays.add(date);
+    }
     //get possible times
     ArrayList<String> getPossibleTimes() {
         return possibleTimes;
+    }
+    //get possible days
+    ArrayList<Date> getPossibleDays() {
+        return possibleDays;
+    }
+    //populaters
+    //populate possible times
+    public void populateTimes() {
+        possibleTimes.add("8am");
+        possibleTimes.add("9am");
+        possibleTimes.add("10am");
+        possibleTimes.add("11am");
+        possibleTimes.add("12am");
+        possibleTimes.add("1pm");
+        possibleTimes.add("2pm");
+        possibleTimes.add("3pm");
+        possibleTimes.add("4pm");
+        possibleTimes.add("5pm");
+        possibleTimes.add("6pm");
+    }
+    //populate possible Days
+    public void populateDays() {
     }
 }

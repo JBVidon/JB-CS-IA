@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.*;
 import java.util.*;
 
 public class GUI extends Main {
@@ -9,13 +10,16 @@ public class GUI extends Main {
     JPanel panel1, panelTimes;//create panel variable
     JTextArea instructions;//create instruction variable
     JTextArea escapetitle;//create instruction variable
+    JFormattedTextField dateInput;//create input for the date
     JTextField input;//create input variable
     JButton submit;
-    JComboBox<String> openTimes;
+    JComboBox<String> openTimes, openDays;
+    DateFormat df;
 
 
     //constructor
     GUI(){
+        df = new SimpleDateFormat("MM/dd/yyyy");
     }
     public void createScheduleGUI() {
         frame1 = new JFrame("Escape 1 2 3");//this is the window
@@ -55,14 +59,18 @@ public class GUI extends Main {
     public void chooseTimes() {
         frameTimes = new JFrame("Chose your times");
         panelTimes = new JPanel();
-        panelTimes.setBackground(new Color(209,229,235));
+        // panelTimes.setBackground(new Color(209,229,235));
         submit = new JButton("Submit!");
-        submit.setForeground(Color.black);
-        submit.setBackground(new Color(150, 176, 183));
+        // submit.setForeground(Color.black);
+        // submit.setBackground(new Color(150, 176, 183));
         instructions = new JTextArea("Enter the time you want:");
         instructions.setEditable(false);
-        instructions.setForeground(Color.black);
-        instructions.setBackground(new Color(150, 176, 183));
+        // instructions.setForeground(Color.black);
+        // instructions.setBackground(new Color(150, 176, 183));
+        dateInput = new JFormattedTextField(df);
+        dateInput.setSize(100,300);
+
+        dateInput.setEditable(true);
 
         submit.addActionListener( new ActionListener() {
             @Override
@@ -74,13 +82,17 @@ public class GUI extends Main {
 
         String[] times = copyArrayList(getPossibleTimes());
         openTimes = new JComboBox<String>(times);
+        String[] days = copyArrayList(getPossibleDays());
+        openDays = new JComboBox<String>(days);
 
         frameTimes.setSize(500,600);
         frameTimes.add(panelTimes);
         panelTimes.setLayout( new GridBagLayout());
-        panelTimes.add(instructions, setConstraints(0, 0, 0.5, 1));
-        panelTimes.add(openTimes, setConstraints(1, 0, 0.5, 1));
-        panelTimes.add(submit, setConstraints(2, 0, 0.5, 1));
+        panelTimes.add(new JTextArea("Please enter the day you would like to attend:"), setConstraints(0, 0, 0.5, 1));
+        panelTimes.add(dateInput, setConstraints(1, 0, 0.5, 2));
+        panelTimes.add(instructions, setConstraints(0, 1, 0.5, 1));
+        panelTimes.add(openTimes, setConstraints(1, 1, 0.5, 1));
+        panelTimes.add(submit, setConstraints(3, 2, 0.5, 3));
 
         frameTimes.setVisible(true);
     }
@@ -94,10 +106,10 @@ public class GUI extends Main {
         return c;
     }
 
-    public String[] copyArrayList(ArrayList<String> arrayList) {
+    public String[] copyArrayList(ArrayList<?> arrayList) {
         String[] copyArray = new String[arrayList.size()];
         for (int i = 0; i < copyArray.length; i++) {
-            copyArray[i] = arrayList.get(i);
+            copyArray[i] = (String) arrayList.get(i);
         }
         return copyArray;
     }
