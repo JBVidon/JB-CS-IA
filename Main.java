@@ -21,6 +21,7 @@ public class Main {
         try {
             FileReader adminReader = new FileReader("ADMIN-SETTINGS.txt");
             adminReader.read();
+            adminReader.close();
         } catch (Exception q) {
             System.out.println(q);
         }
