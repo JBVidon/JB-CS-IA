@@ -42,7 +42,7 @@ public class GUI extends Main {
                 //get their name
                 String inputName = input.getText();
                 System.out.println(inputName);
-                addPeople(inputName);
+                setName(inputName);
                 input.setText("");
                 frame1.dispose();
                 chooseTimes();
@@ -79,23 +79,40 @@ public class GUI extends Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //do something
+                /*TODO: turn the inputs into a file and delete the date and time that have been chosen
+                √ => Get the name date and time and turn it into variables
+                => Get those variables and concatenate them together into a single variable that can be easily read by code (seperated by a comma is the easiest)
+                => Write that String variable into a text file, we already created onee in main but you can do another one. We even have a function to write it in
+                -----------=> you want to remove the option in the GUI. This is going to be the hard part:
+                    => Make a funtion in Main to remove a value from the Date and Times array List
+                    => Remove the values that the person inputed (time and date) and use the method you created to remove them from the respective array list
+                    => remove the Date and Time box from the GUI
+                    => add the Date and time box with the updated values to the GUI again
+                */
+                String currentName = getName();
+                String selectedDay = (String) openDays.getSelectedItem();
+                String selectedTime = (String) openTimes.getSelectedItem();
+                setEvent(currentName, selectedDay, selectedTime);
                 System.out.println("Submitted");
             }
         });
+
+
+        frameTimes.setSize(500,600);
+        frameTimes.add(panelTimes);
+        panelTimes.setLayout( new GridBagLayout());
+        panelTimes.add(new JTextArea("Please enter the day you would like to attend:"), setConstraints(0, 0, 0.5, 1));
+        panelTimes.add(openDays, setConstraints(1, 0, 0.5, 2));
+        panelTimes.add(instructions, setConstraints(0, 1, 0.5, 1));
+        panelTimes.add(openTimes, setConstraints(1, 1, 0.5, 1));
+        panelTimes.add(submit, setConstraints(3, 2, 0.5, 3));
+
 
         String[] times = copyArrayList(getPossibleTimes());
         openTimes = new JComboBox<String>(times);
         String[] days = copyArrayList(getPossibleDays());
         openDays = new JComboBox<String>(days);
 
-        frameTimes.setSize(500,600);
-        frameTimes.add(panelTimes);
-        panelTimes.setLayout( new GridBagLayout());
-        panelTimes.add(new JTextArea("Please enter the day you would like to attend:"), setConstraints(0, 0, 0.5, 1));
-        panelTimes.add(dateInput, setConstraints(1, 0, 0.5, 2));
-        panelTimes.add(instructions, setConstraints(0, 1, 0.5, 1));
-        panelTimes.add(openTimes, setConstraints(1, 1, 0.5, 1));
-        panelTimes.add(submit, setConstraints(3, 2, 0.5, 3));
 
         frameTimes.setVisible(true);
     }
