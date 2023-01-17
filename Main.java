@@ -5,8 +5,8 @@ import java.util.*;
 public class Main {
     //instance field
     ArrayList<String[]> events = new ArrayList<String[]>();
-    private ArrayList<String> possibleTimes = new ArrayList<String>();
-    private ArrayList<String> possibleDays = new ArrayList<String>();
+    ArrayList<String> possibleTimes = new ArrayList<String>();
+    Map<String, ArrayList<String>> possibleDays = new HashMap<String, ArrayList<String>>();
 
     String tempValue;
 
@@ -36,9 +36,9 @@ public class Main {
     //write data
     public void write(String inputToWrite) {
         try {
-            File myFile = new File("names.txt");
+            File myFile = new File("Reservations.txt");
             myFile.createNewFile();
-            FileWriter writer = new FileWriter("names.txt", true);
+            FileWriter writer = new FileWriter("Reservations.txt", true);
             writer.write(inputToWrite + "\n");
             writer.close();
         } catch (IOException e) {
@@ -52,6 +52,8 @@ public class Main {
         arr[1] = day;
         arr[2] = time;
         events.add(arr);
+        String stringToWrite = name + "," + time + "," + day;
+        write(stringToWrite);
     }
     //add times to the list
     void addTime(String time) {
@@ -59,18 +61,18 @@ public class Main {
     }
     //add date to the list
     void addDate(String date) {
-        possibleDays.add(date);
+        possibleDays.put(date, new ArrayList<String>(getPossibleDays()));
     }
     void setName(String name) {
         tempValue = name;
     }
     //get possible times
-    ArrayList<String> getPossibleTimes() {
-        return possibleTimes;
+    ArrayList<String> getPossibleTimes(String day) {
+        return possibleDays.get(day);
     }
     //get possible days
     ArrayList<String> getPossibleDays() {
-        return possibleDays;
+        return new ArrayList<String>(possibleDays.keySet());
     }
     //get name
     String getName() {
@@ -88,5 +90,13 @@ public class Main {
         for (int o = 0; o < arr.length; o++) {
             addDate(arr[o]);
         }
+    }
+    //removers
+    public void removeTime(String time, String date) {
+        ArrayList<String> times = new ArrayList<String>(possibleDays.get(date));
+        possibleDays.remove(date);
+        int index = times.indexOf(time);
+        times.remove(index);
+        possibleDays.put(date, times);
     }
 }

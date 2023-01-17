@@ -75,6 +75,7 @@ public class GUI extends Main {
 
         dateInput.setEditable(true);
 
+
         submit.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -94,27 +95,37 @@ public class GUI extends Main {
                 String selectedTime = (String) openTimes.getSelectedItem();
                 setEvent(currentName, selectedDay, selectedTime);
                 System.out.println("Submitted");
+                removeTime(selectedTime, selectedDay);
+                frameTimes.dispose();
+                createScheduleGUI();
             }
         });
-
 
         frameTimes.setSize(500,600);
         frameTimes.add(panelTimes);
         panelTimes.setLayout( new GridBagLayout());
         panelTimes.add(new JTextArea("Please enter the day you would like to attend:"), setConstraints(0, 0, 0.5, 1));
-        panelTimes.add(openDays, setConstraints(1, 0, 0.5, 2));
-        panelTimes.add(instructions, setConstraints(0, 1, 0.5, 1));
-        panelTimes.add(openTimes, setConstraints(1, 1, 0.5, 1));
         panelTimes.add(submit, setConstraints(3, 2, 0.5, 3));
-
-
-        String[] times = copyArrayList(getPossibleTimes());
-        openTimes = new JComboBox<String>(times);
+        panelTimes.add(instructions, setConstraints(0, 1, 0.5, 1));
+        panelTimes.add(openDays, setConstraints(1, 0, 0.5, 2));
+        panelTimes.add(openTimes, setConstraints(1, 1, 0.5, 1));
+        frameTimes.setVisible(true);
         String[] days = copyArrayList(getPossibleDays());
         openDays = new JComboBox<String>(days);
-
-
-        frameTimes.setVisible(true);
+        openDays.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //do the update
+                String[] times = copyArrayList(getPossibleTimes((String) openDays.getSelectedItem()));
+                panelTimes.remove(openTimes);
+                openTimes = new JComboBox<String>(times);
+                panelTimes.add(openTimes, setConstraints(1, 1, 0.5, 1));
+            }
+        });
+        panelTimes.add(openDays, setConstraints(1, 0, 0.5, 2));
+        //String[] times = copyArrayList(getPossibleTimes((String) openDays.getSelectedItem()));
+        openTimes = new JComboBox<String>();
+        panelTimes.add(openTimes, setConstraints(1, 1, 0.5, 1));
     }
 
     public GridBagConstraints setConstraints(int gridx, int gridy, double weight, int width){
