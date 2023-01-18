@@ -107,19 +107,19 @@ public class GUI extends Main {
         panelTimes.add(new JTextArea("Please enter the day you would like to attend:"), setConstraints(0, 0, 0.5, 1));
         panelTimes.add(submit, setConstraints(3, 2, 0.5, 3));
         panelTimes.add(instructions, setConstraints(0, 1, 0.5, 1));
-        panelTimes.add(openDays, setConstraints(1, 0, 0.5, 2));
-        panelTimes.add(openTimes, setConstraints(1, 1, 0.5, 1));
         frameTimes.setVisible(true);
-        String[] days = copyArrayList(getPossibleDays());
+        String[] days = listForDate(getPossibleDays());
         openDays = new JComboBox<String>(days);
         openDays.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //do the update
+                System.out.println("it should be changing");
                 String[] times = copyArrayList(getPossibleTimes((String) openDays.getSelectedItem()));
                 panelTimes.remove(openTimes);
                 openTimes = new JComboBox<String>(times);
                 panelTimes.add(openTimes, setConstraints(1, 1, 0.5, 1));
+                panelTimes.revalidate();
             }
         });
         panelTimes.add(openDays, setConstraints(1, 0, 0.5, 2));
@@ -141,6 +141,15 @@ public class GUI extends Main {
         String[] copyArray = new String[arrayList.size()];
         for (int i = 0; i < copyArray.length; i++) {
             copyArray[i] = (String) arrayList.get(i);
+        }
+        return copyArray;
+    }
+
+    public String[] listForDate(ArrayList<?> arrayList) {
+        String[] copyArray = new String[arrayList.size() + 1];
+        copyArray[0] = "...";
+        for (int i = 1; i < copyArray.length; i++) {
+            copyArray[i] = (String) arrayList.get(i-1);
         }
         return copyArray;
     }

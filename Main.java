@@ -61,7 +61,7 @@ public class Main {
     }
     //add date to the list
     void addDate(String date) {
-        possibleDays.put(date, new ArrayList<String>(getPossibleDays()));
+        possibleDays.put(date, new ArrayList<String>(possibleTimes));
     }
     void setName(String name) {
         tempValue = name;
