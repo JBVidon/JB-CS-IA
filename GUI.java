@@ -55,7 +55,7 @@ public class GUI extends Main {
         panel1.add(instructions, setConstraints(0, 1, 0.5, 1));
         panel1.add(input, setConstraints(2, 1, 0.5, 2));
 
-        frame1.setSize(400,500);
+        frame1.setSize(520,600);
         frame1.setVisible(true);
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -101,7 +101,7 @@ public class GUI extends Main {
             }
         });
 
-        frameTimes.setSize(500,600);
+        frameTimes.setSize(520,600);
         frameTimes.add(panelTimes);
         panelTimes.setLayout( new GridBagLayout());
         panelTimes.add(new JTextArea("Please enter the day you would like to attend:"), setConstraints(0, 0, 0.5, 1));
