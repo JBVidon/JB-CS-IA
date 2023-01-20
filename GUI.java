@@ -48,7 +48,7 @@ public class GUI extends Main {
                 chooseTimes();
             }
         });
-        //button.addActionListener( new ad; {public void actionPerformed(ActionEvent e) {})})
+        
         frame1.add(panel1);
         panel1.setLayout( new GridBagLayout());
         panel1.add(escapetitle, setConstraints(0, 0, 0.5, 3));
@@ -62,14 +62,13 @@ public class GUI extends Main {
     public void chooseTimes() {
         frameTimes = new JFrame("Chose your times");
         panelTimes = new JPanel();
-        // panelTimes.setBackground(new Color(209,229,235));
+        panelTimes.setBackground(new Color(209,229,235));
         submit = new JButton("Submit!");
-        // submit.setForeground(Color.black);
-        // submit.setBackground(new Color(150, 176, 183));
+        submit.setForeground(Color.black);
+        submit.setBackground(new Color(150, 176, 183));
         instructions = new JTextArea("Enter the time you want:");
         instructions.setEditable(false);
-        // instructions.setForeground(Color.black);
-        // instructions.setBackground(new Color(150, 176, 183));
+        instructions.setForeground(Color.black);
         dateInput = new JFormattedTextField(df);
         dateInput.setSize(100,300);
 
@@ -79,17 +78,6 @@ public class GUI extends Main {
         submit.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //do something
-                /*TODO: turn the inputs into a file and delete the date and time that have been chosen
-                √ => Get the name date and time and turn it into variables
-                => Get those variables and concatenate them together into a single variable that can be easily read by code (seperated by a comma is the easiest)
-                => Write that String variable into a text file, we already created onee in main but you can do another one. We even have a function to write it in
-                -----------=> you want to remove the option in the GUI. This is going to be the hard part:
-                    => Make a funtion in Main to remove a value from the Date and Times array List
-                    => Remove the values that the person inputed (time and date) and use the method you created to remove them from the respective array list
-                    => remove the Date and Time box from the GUI
-                    => add the Date and time box with the updated values to the GUI again
-                */
                 String currentName = getName();
                 String selectedDay = (String) openDays.getSelectedItem();
                 String selectedTime = (String) openTimes.getSelectedItem();
