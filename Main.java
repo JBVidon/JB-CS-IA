@@ -100,4 +100,4 @@ public class Main {
         possibleDays.put(date, times);
     }
 }
-
+//Hi Jose
