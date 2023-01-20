@@ -14,7 +14,7 @@ public class Main {
     Main() {
         String[] times = {"10pm","11pm","12pm","1pm", "2pm","3pm","4pm","5pm","6pm"};
         populateTimes(times);
-        String[] dates = {"1/9/2023","1/10/2023","1/11/2023","1/12/2023","1/13/2023","1/14/2023","1/15/2023"};
+        String[] dates = {"1/9/2023","1/12/2023","1/14/2023","1/15/2023","1/11/2023","1/10/2023","1/13/2023"};
         populateDays(dates);
     }
     public static void main(String[] args) throws Exception {
